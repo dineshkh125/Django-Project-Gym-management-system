@@ -1,0 +1,220 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>METAL MUSCLE FITNESS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+
+    }
+
+    /* Remove the jumbotron's default bottom margin */ 
+    .jumbotron {
+      font-family:"chiller";
+      margin-bottom: 0;
+      background-image:url("{% static 'images/gymbacknew.jpg' %}");height: 100; width: 100;
+      padding:10px;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #b49393;
+      padding: 20px;
+    }
+    
+  
+  
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #f4511e;
+    color: #fff;
+  }
+  
+
+
+  
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+    
+  }
+
+  
+
+  
+
+  
+  
+  
+  </style>
+</head>
+<body>
+  <div class="jumbotron">
+  <div style="color:hsl(180, 85%, 68%)" class="container text-center" >    
+    <h1 ><b><strong>METAL MUSCLE FITNESS</strong></b></h1>      
+    <p style="color:#adc910"><b>Helping people live Longer, Happier and Healthier</b></p>
+  </div>
+  </div>
+  
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      {%if "uname" in request.session %}
+      <a class="navbar-brand" href="#">Welcome {{request.session.uname}}</a>
+      {%else%}
+      <a class="navbar-brand" href="#">METAL MUCLE FITNESS </a>
+      {%endif%}
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            {% for cat in cats %}
+          
+            <li><a href="/ShowGyms/{{cat.id}}">{{cat.cat_name}}</a></li>
+            {%endfor%}
+            
+          </ul>
+        </li>
+        
+        
+        <li><a href="/ContactUs">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {%if "uname" in request.session%}
+        <li><a href="/Logout"><span class="glyphicon glyphicon-user"></span> Logout </a></li>
+        <li><a href="/ShowAllCartItems"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+        {%else%}
+        <li><a href="/Login"><span class="glyphicon glyphicon-user"></span> Login </a></li>
+        <li><a href="/SignUp"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>        
+        {%endif%}    
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox" style="font-family:serif">
+      <div class="item active">
+        <img src="{% static 'images/Lift.jpg' %}" alt="" width="2000" height="100">
+        <div class="carousel-caption">
+          <h2><b>METAL MUSCLE FITNESS</b></h2>
+          <p>Lift heavy today if you want strength tomorrow.</p>
+        </div>      
+      </div>
+
+
+      
+
+
+      <div class="item">
+        <img src="{% static 'images/muscles.jpg' %}" alt="" width="2000" height="100">
+        <div class="carousel-caption">
+          <h2><b>METAL MUSCLE FITNESS</b></h2>
+          <p>You look good in muscles.</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="{% static 'images/selflove.jpg' %}" alt="" width="2000" height="100">
+        <div class="carousel-caption">
+          <h2><b>METAL MUSCLE FITNESS</b></h2>
+          <p>Love yourself enough to work harder</p>
+        </div>      
+      </div>
+    </div>
+
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>  
+
+
+
+
+
+
+{%block content%}  
+
+  <h3><center><b>Services</b></center></h3><br>
+  <div class="container">    
+    <div class="row">
+      {% for gym in gyms%}
+      <div class="col-sm-4">
+        <div class="panel panel-primary">
+          <div class="panel panel-default text-center">
+          <div class="panel-heading">{{gym.service_name}}</div></div>
+          <div class="panel-body"><img src="{{gym.imageurl.url}}" class="img-responsive" style="width:400px;height:200px" alt="Image"></div>
+          <div class="panel-footer">
+            <P>Price: {{gym.price}} </P>
+            <P>Description: {{gym.description}}</P>
+            <P><a href='/ViewDetails/{{gym.id}}'>View Details</a></P>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+
+      
+
+
+  
+{%endblock%}
+<center>
+  <a href="/ContactUs"> <p><br><button class="btn btn-primary btn-lg">Get in Touch</button></p></a>
+</center>
+
+<footer class="container-fluid text-center">
+ <p>@2022Copyrights</p>
+</footer>
+
+</body>
+</html>

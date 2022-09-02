@@ -1,0 +1,30 @@
+{%extends "master.html"%} 
+{%block content%} 
+<div class="container"> 
+    <h2 style="color:#0eb616" font face ="body MT">Service Details</font></h2> 
+    <form method="post" action="/addToCart"> 
+        {%csrf_token%} 
+<table class="table"> 
+    <tr><td>Service Id</td><td>{{gym.id}} 
+        <input type="hidden" name="gym_id" value="{{gym.id}}"/> 
+    </td><td rowspan="5"> 
+        <img src="{{gym.imageurl.url}}" class="img-square" height="300px" width="300px"/> 
+    </td></tr> 
+    <tr><td>Service Name</td><td>{{gym.service_name}}</td></tr> 
+    <tr><td>Service Price</td><td>{{gym.price}}</td></tr> 
+    <tr><td>Service Description</td><td>{{gym.description}}</td></tr> 
+    <tr><td>Category</td><td>{{gym.category}}</td></tr> 
+    <tr><td>Quantity</td> 
+    <td><select name="qty"> 
+        <option>1</option> 
+        <option>2</option> 
+        <option>3</option> 
+        <option>4</option> 
+        <option>5</option> 
+    </select></td></tr> 
+    <tr><td><button type="submit" class="btn btn-warning"> 
+        Add To Cart</button></td></tr> 
+</table> 
+</form> 
+</div> 
+{%endblock%}
